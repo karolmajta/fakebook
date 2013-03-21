@@ -1,7 +1,7 @@
 from setuptools import setup
 setup(
     name = "fakebook",
-    version = "0.1",
+    version = "0.2",
     package_dir = {'': 'src'},
     packages = [
         'fakebook',
@@ -20,5 +20,5 @@ setup(
     description = "Tool for managing facebook test users",
     license = "JSON License",
     keywords = "facebook test users",
-    url = "http://boreas.readthedocs.org/",
+    url = "https://github.com/lolek09/fakebook",
 )

@@ -23,14 +23,15 @@ class FakebookUser(object):
 
 class FakebookContextManager(object):
     
-    def __init__(self, count, fb_app):
+    def __init__(self, count, permissions, fb_app):
         self.count = count
+        self.permissions = permissions
         self.users = []
         self.fb_app = fb_app
     
     def __enter__(self):
         for _ in range(0, self.count):
-            self.users.append(self.fb_app.create_test_user())
+            self.users.append(self.fb_app.create_test_user(permissions=self.permissions))
         return self.users
     
     def __exit__(self, exc_type, exc_val, exc_tb):
@@ -149,5 +150,5 @@ class Fakebook(object):
         if response.text != "true":
             raise FakebookException(response.text)
     
-    def managed_users(self, count):
-        return FakebookContextManager(count, self)
+    def managed_users(self, count, permissions):
+        return FakebookContextManager(count, permissions, self)
